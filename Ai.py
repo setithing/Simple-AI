@@ -139,6 +139,7 @@ while running == 1:
 		
 		done = 2
 		running = 0
+		
 	if data == "*THINK":
 		q = random.randint(0,(len(inMessage)-1))
 		now = datetime.datetime.now()
@@ -147,18 +148,21 @@ while running == 1:
 		outMessage.append(p)
 		wordMatch.append(0)
 		done = 2
+		
 	if data == "*DEBUG":
 		if debug == 0:
 			debug = 1
 		else:
 			debug = 0
 		done = 2
+		
 	if data == "*WRONG":
 		replace2 = raw_input("Please correct my mistake: ")
 		inMessage.append(olddata)
 		outMessage.append(replace2)
 		wordMatch.append(0)
 		done = 2
+		
 	#end of commands
 	
 	#string checking
@@ -191,6 +195,8 @@ while running == 1:
 				
 				if dataSplit[g] == splitBuffer[h]:
 					wordMatch[i] = wordMatch[i] + 2
+
+#may be causeing miss readings
 				else:
 					if wordMatch[i] > 0:
 						wordMatch[i] = wordMatch[i] - 1
@@ -198,12 +204,15 @@ while running == 1:
 			
 		if wordMatch[i] > 0:
 			noHigh = 0
-	if debug == 1:		
-		print wordMatch
 	
 	for i, item in enumerate(inMessage):
 		if wordMatch[highWord] < wordMatch[i]:
 			highWord = i
+			
+	if debug == 1:		
+		print wordMatch
+		print inMessage[highWord]
+			
 	if done != 2:
 		if(noHigh == 1):
 			done = 0
@@ -227,7 +236,7 @@ while running == 1:
 				feeling = 5
 			if (feeling < 0):
 				feeling = 0
-			message = string.replace(message,"/FEEL",feelings[feeling][random.randint(0,len(feelings[feeling]))])
+			message = string.replace(message,"/FEEL",feelings[feeling][random.randint(0,len(feelings[feeling])-1)])
 
 	if done == 0:
 	
