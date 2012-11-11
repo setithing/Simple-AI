@@ -32,22 +32,22 @@ def saveData(inArray, outArray):
 	fileJson.write(store)
 	fileJson.close()
 
+
+#variable decalring
+
+#computer names
 firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #NO MORE NAMES!
 lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
 
+# picking computers name
 lname = lastnames[random.randint(0,len(lastnames)-1)]
 fname = firstnames[random.randint(0,len(firstnames)-1)]
 
-namel = fname+" "+lname
+#combineing names
+namel = fname + " " + lname
 age = random.randint(14,60)
 
-print "waking up..."
-
-now = time.strftime("%H:%M:%S")
-
-usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
-
-message = "Hello "+usersnamel
+message = "Hello "
 
 inMessage = []
 outMessage = []
@@ -86,6 +86,12 @@ for i, item in enumerate(brain["inData"]):
 print len(brain["inData"])
 
 now = time.strftime("%H:%M:%S")
+
+print "waking up..."
+
+now = time.strftime("%H:%M:%S")# uses a string make in time to create the time
+
+usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
 
 print now + " " + namel + ": " + message
 
@@ -181,9 +187,11 @@ while running == 1:
 
 
 			temp = []
+			
 			for k, item in enumerate(inMessage):
 				if inMessage[k] == inMessage[highWord]:
 					temp.append(k)
+					
 			message = outMessage[temp[random.randint(0,(len(temp)-1))]]
 			message = string.replace(message,"/AGE",str(age))
 			message = string.replace(message,"/NAME",namel)
@@ -192,10 +200,12 @@ while running == 1:
 			message = string.replace(message,"/FNAME",fname)
 
 	if done == 0:
+	
 		reply = raw_input("Sorry I don't know how to reply please enter: ")
 		inMessage.append(data)
 		outMessage.append(reply)
 		wordMatch.append(0)
+		
 	elif done == 1:
 
 		now = time.strftime("%H:%M:%S")
