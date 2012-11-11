@@ -129,7 +129,7 @@ while running == 1:
 		done = 2
 	
 	if data == "*EXIT":
-		now = datetime.datetime.now()
+		nnow = time.strftime("%H:%M:%S")# uses a string make in time to create the time
 		print now + " " + namel + ": Bye see you soon"
 
 		
