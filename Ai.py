@@ -1,4 +1,8 @@
 import json
+import random
+import time
+import datetime
+import string
 
 def saveData(inArray, outArray):
 	print "saving"
@@ -28,11 +32,22 @@ def saveData(inArray, outArray):
 	fileJson.write(store)
 	fileJson.close()
 
+firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan"] #MORE NAMES!
+lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
+
+lname = lastnames[random.randint(0,len(lastnames)-1)]
+fname = firstnames[random.randint(0,len(firstnames)-1)]
+
+namel = fname+" "+lname
+age = random.randint(14,60)
 
 print "waking up..."
 
-message = "Hello world"
 
+now = datetime.datetime.now()
+
+usersnamel = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": What is your name?\n"+str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" You: ")
+message = "Hello "+usersnamel
 inMessage = []
 outMessage = []
 feelings = []
@@ -47,9 +62,13 @@ noHigh = 1
 
 done = 0
 
+debug = 1
+
 chats = 0
 
 running = 1
+
+olddata = "Hello"
 
 #loading and processing json file
 jsonFile = open('data/brain.json').read()
@@ -65,11 +84,13 @@ for i, item in enumerate(brain["inData"]):
 
 print len(brain["inData"])
 
-print "Computer: ", message
+now = datetime.datetime.now()
+
+print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": "+message
 
 while running == 1:
 	
-	data = raw_input("You: ")
+	data = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+usersnamel+": ")
 	
 	#commands
 	if data == "*LIST":
@@ -85,7 +106,9 @@ while running == 1:
 		done = 2
 	
 	if data == "*EXIT":
-		print "Computer: Bye see you soon"
+		now = datetime.datetime.now()
+		print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": Bye see you soon"
+
 		
 		print "saving"
 		
@@ -93,16 +116,30 @@ while running == 1:
 		
 		done = 2
 		running = 0
-		
-	if data == "thats not right":
-	
-		a = raw_input("Sorry did I get it wrong (Y/N): ")
-		
-		if a == "Y"
-		
+	if data == "*THINK":
+		q = random.randint(0,(len(inMessage)-1))
+		now = datetime.datetime.now()
+		p = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": "+inMessage[q]+"\nYou: ")
+		inMessage.append(inMessage[q])
+		outMessage.append(p)
+		wordMatch.append(0)
+		done = 2
+	if data == "*DEBUG":
+		if debug == 0:
+			debug = 1
+		else:
+			debug = 0
+		done = 2
+	if data == "*WRONG":
+		replace2 = raw_input("Please correct my mistake: ")
+		inMessage.append(olddata)
+		outMessage.append(replace2)
+		wordMatch.append(0)
+		done = 2
 	#end of commands
 	
 	#string checking
+	olddata = data.lower()
 	data = data.lower()
 	
 	#clearing every thing out
@@ -122,14 +159,15 @@ while running == 1:
 				
 				if dataSplit[g] == splitBuffer[h]:
 					wordMatch[i] = wordMatch[i] + 2
-					
+				else:
+					if wordMatch[i] > 0:
+						wordMatch[i] = wordMatch[i] - 1
+				
+			
 		if wordMatch[i] > 0:
 			noHigh = 0
-			
-		if wordMatch[i] < int(wordMatch[i]*0.80):
-			wordMatch[i] = 0
-			
-	print wordMatch
+	if debug == 1:		
+		print wordMatch
 	
 	for i, item in enumerate(inMessage):
 		if wordMatch[highWord] < wordMatch[i]:
@@ -139,9 +177,18 @@ while running == 1:
 			done = 0
 		else:
 			done = 1		
-			print "Best match: ", inMessage[highWord]
-			print "Best reply: ", outMessage[highWord]
-			message = outMessage[highWord]
+
+
+			temp = []
+			for k, item in enumerate(inMessage):
+				if inMessage[k] == inMessage[highWord]:
+					temp.append(k)
+			message = outMessage[temp[random.randint(0,(len(temp)-1))]]
+			message = string.replace(message,"/AGE",str(age))
+			message = string.replace(message,"/NAME",namel)
+			message = string.replace(message,"/UNAME",usersnamel)
+			message = string.replace(message,"/LNAME",lname)
+			message = string.replace(message,"/FNAME",fname)
 
 	if done == 0:
 		reply = raw_input("Sorry I don't know how to reply please enter: ")
@@ -149,7 +196,9 @@ while running == 1:
 		outMessage.append(reply)
 		wordMatch.append(0)
 	elif done == 1:
-		print "Computer: ", message
+
+		now = datetime.datetime.now()
+		print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second,))+" "+namel+": "+ message
 	chats = chats + 1
 	done = 0
 	
