@@ -4,6 +4,9 @@ import time
 import datetime
 import string
 
+usersnamel = "Tim Smith"
+namel = "Ben Tatman"
+
 def saveData(inArray, outArray):
 	print "saving"
 		
@@ -26,8 +29,10 @@ def saveData(inArray, outArray):
 	
 	store2 = store2 + ']'
 	
-	store = '{' + store1 + ',' + store2 + '}'
+	#######THIS BIT############store3 = '"names":[{"usersnamel":"'+usersnamel+'"}{"namel":"'+namel+'"}]'
 
+	#store = '{' + store1 + ',' + store2 + ',' + store3 + '}'
+	store = '{' + store1 + ',' + store2 + ',' + '}'
 	fileJson = open("data/brain.json", "w")
 	fileJson.write(store)
 	fileJson.close()
@@ -43,10 +48,25 @@ age = random.randint(14,60)
 
 print "waking up..."
 
+#loading and processing json file
+jsonFile = open('data/brain.json').read()
+
+#print jsonFile
+
+brain = json.load(jsonFile)
+
+for i, item in enumerate(brain["inData"]):
+	inMessage.append(brain["inData"][i]["id"])
+	outMessage.append(brain["outData"][i]["id"])
+	wordMatch.append(0)
+###########THIS BIT
+#usersnamel = brain["names"]["usersnamel"]
+#namel = brain["names"]["namel"]
+###########THAT BIT
 
 now = datetime.datetime.now()
-
-usersnamel = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": What is your name?\n"+str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" You: ")
+if usersnamel == "":
+	usersnamel = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": What is your name?\n"+str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" You: ")
 message = "Hello "+usersnamel
 inMessage = []
 outMessage = []
@@ -70,17 +90,6 @@ running = 1
 
 olddata = "Hello"
 
-#loading and processing json file
-jsonFile = open('data/brain.json').read()
-
-#print jsonFile
-
-brain = json.loads(jsonFile)
-
-for i, item in enumerate(brain["inData"]):
-	inMessage.append(brain["inData"][i]["id"])
-	outMessage.append(brain["outData"][i]["id"])
-	wordMatch.append(0)
 
 print len(brain["inData"])
 
