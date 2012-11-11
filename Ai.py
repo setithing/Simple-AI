@@ -51,7 +51,10 @@ message = "Hello "
 
 inMessage = []
 outMessage = []
-feelings = []
+feelings = [["crap","rubbish","not good"],["evil","bad","annoyed"],["ok","well","meh"],["good","simple","cool"],["brilliant","awesome","totally awesome"]]
+feeling = 3
+boundaries = [["rubbish","idiot","annoying","evil"],["awesome","good","cool"]]
+## boundaries go 0*3, 1*3, 2*3, 3*3, etc 1-15 (max boundary = 3*5)
 
 data = ""
 dataSplit = []
@@ -162,6 +165,15 @@ while running == 1:
 	olddata = data.lower()
 	data = data.lower()
 	
+	for i in range(0,len(boundaries[0])-1):
+		pos = data.find(boundaries[0][i])
+		if pos < 0:
+			feeling-1
+	for i in range(0,len(boundaries[1])-1):
+		pos = data.find(boundaries[1][i])
+		if pos < 0:
+			feeling+1
+
 	#clearing every thing out
 	
 	
@@ -211,6 +223,11 @@ while running == 1:
 			message = string.replace(message,"/UNAME",usersnamel)
 			message = string.replace(message,"/LNAME",lname)
 			message = string.replace(message,"/FNAME",fname)
+			if (feeling > 5):
+				feeling = 5
+			if (feeling < 0):
+				feeling = 0
+			message = string.replace(message,"/FEEL",feelings[feeling][random.randint(0,len(feelings[feeling]))])
 
 	if done == 0:
 	
