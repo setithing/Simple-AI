@@ -129,7 +129,7 @@ while running == 1:
 		done = 2
 	
 	if data == "*EXIT":
-		nnow = time.strftime("%H:%M:%S")# uses a string make in time to create the time
+		now = time.strftime("%H:%M:%S")# uses a string make in time to create the time
 		print now + " " + namel + ": Bye see you soon"
 
 		
@@ -142,7 +142,7 @@ while running == 1:
 		
 	if data == "*THINK":
 		q = random.randint(0,(len(inMessage)-1))
-		now = datetime.datetime.now()
+		now = time.strftime("%H:%M:%S")
 		p = raw_input(now + " " + namel + ": " + inMessage[q] + "\nYou: ")
 		inMessage.append(inMessage[q])
 		outMessage.append(p)
