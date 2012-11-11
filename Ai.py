@@ -32,7 +32,7 @@ def saveData(inArray, outArray):
 	fileJson.write(store)
 	fileJson.close()
 
-firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #MORE NAMES!
+firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #NO MORE NAMES!
 lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
 
 lname = lastnames[random.randint(0,len(lastnames)-1)]
@@ -43,11 +43,12 @@ age = random.randint(14,60)
 
 print "waking up..."
 
+now = time.strftime("%H:%M:%S")
 
-now = datetime.datetime.now()
+usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
 
-usersnamel = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": What is your name?\n"+str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" You: ")
 message = "Hello "+usersnamel
+
 inMessage = []
 outMessage = []
 feelings = []
@@ -84,13 +85,13 @@ for i, item in enumerate(brain["inData"]):
 
 print len(brain["inData"])
 
-now = datetime.datetime.now()
+now = time.strftime("%H:%M:%S")
 
-print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": "+message
+print now + " " + namel + ": " + message
 
 while running == 1:
 	
-	data = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+usersnamel+": ")
+	data = raw_input(now + " " + usersnamel + ": ")
 	
 	#commands
 	if data == "*LIST":
@@ -107,7 +108,7 @@ while running == 1:
 	
 	if data == "*EXIT":
 		now = datetime.datetime.now()
-		print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": Bye see you soon"
+		print now + " " + namel + ": Bye see you soon"
 
 		
 		print "saving"
@@ -119,7 +120,7 @@ while running == 1:
 	if data == "*THINK":
 		q = random.randint(0,(len(inMessage)-1))
 		now = datetime.datetime.now()
-		p = raw_input(str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second))+" "+namel+": "+inMessage[q]+"\nYou: ")
+		p = raw_input(now + " " + namel + ": " + inMessage[q] + "\nYou: ")
 		inMessage.append(inMessage[q])
 		outMessage.append(p)
 		wordMatch.append(0)
@@ -197,8 +198,8 @@ while running == 1:
 		wordMatch.append(0)
 	elif done == 1:
 
-		now = datetime.datetime.now()
-		print str("%02d" %(now.hour))+":"+str("%02d" %(now.minute))+":"+str("%02d" %(now.second,))+" "+namel+": "+ message
+		now = time.strftime("%H:%M:%S")
+		print now + " " + namel + ": " + message
 	chats = chats + 1
 	done = 0
 	
