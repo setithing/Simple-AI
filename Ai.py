@@ -4,7 +4,7 @@ import time
 import datetime
 import string
 
-def saveData(inArray, outArray):
+def saveData(inArray, outArray, user):
 	print "saving"
 		
 		
@@ -26,7 +26,9 @@ def saveData(inArray, outArray):
 	
 	store2 = store2 + ']'
 	
-	store = '{' + store1 + ',' + store2 + '}'
+	store3 = '"userName":"' + usernamel + '"'
+	
+	store = '{'+ store3 + ',' + store1 + ',' + store2 + '}'
 
 	fileJson = open("data/brain.json", "w")
 	fileJson.write(store)
@@ -46,6 +48,8 @@ fname = firstnames[random.randint(0,len(firstnames)-1)]
 #combineing names
 namel = fname + " " + lname
 age = random.randint(14,60)
+
+usernamel = ""
 
 message = "Hello "
 
@@ -74,14 +78,16 @@ olddata = "Hello"
 #loading and processing json file
 jsonFile = open('data/brain.json').read()
 
-#print jsonFile
-
 brain = json.loads(jsonFile)
 
+
+#retriving data from json
 for i, item in enumerate(brain["inData"]):
 	inMessage.append(brain["inData"][i]["id"])
 	outMessage.append(brain["outData"][i]["id"])
 	wordMatch.append(0)
+	
+usenamel = brain["userName"]
 
 print len(brain["inData"])
 
@@ -108,7 +114,7 @@ while running == 1:
 	if data == "*SAVE":
 		print "saving"
 		
-		saveData(inMessage, outMessage)
+		saveData(inMessage, outMessage, usernamel)
 		
 		done = 2
 	
@@ -119,7 +125,7 @@ while running == 1:
 		
 		print "saving"
 		
-		saveData(inMessage, outMessage)
+		saveData(inMessage, outMessage, usernamel)
 		
 		done = 2
 		running = 0
@@ -210,6 +216,7 @@ while running == 1:
 
 		now = time.strftime("%H:%M:%S")
 		print now + " " + namel + ": " + message
+		
 	chats = chats + 1
 	done = 0
 	
@@ -217,28 +224,6 @@ while running == 1:
 		print "saving"
 		
 		
-		store1 = '"inData":['
-		for i, item in enumerate(inMessage):
-			if(i == (len(inMessage)-1)):
-				store1 = store1 + '{"id":"' + str(inMessage[i]) + '"}'
-			else:
-				store1 = store1 + '{"id":"' + str(inMessage[i]) + '"},'
-		
-		store1 = store1 + ']'
-		
-		store2 = '"outData":['
-		for i, item in enumerate(outMessage):
-			if(i == (len(inMessage)-1)):
-				store2 = store2 + '{"id":"' + str(outMessage[i]) + '"}'
-			else:
-				store2 = store2 + '{"id":"' + str(outMessage[i]) + '"},'
-		
-		store2 = store2 + ']'
-		
-		store = '{' + store1 + ',' + store2 + '}'
-
-		fileJson = open("data/brain.json", "w")
-		fileJson.write(store)
-		fileJson.close()
+		saveData(inMessage, outMessage, usernamel)
 		
 		chats = 0
