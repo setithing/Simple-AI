@@ -29,10 +29,10 @@ def saveData(inArray, outArray):
 	
 	store2 = store2 + ']'
 	
-	#######THIS BIT############store3 = '"names":[{"usersnamel":"'+usersnamel+'"}{"namel":"'+namel+'"}]'
+	store3 = '"names":[{"usersnamel":"'+usersnamel+'"}{"namel":"'+namel+'"}]'
 
-	#store = '{' + store1 + ',' + store2 + ',' + store3 + '}'
-	store = '{' + store1 + ',' + store2 + ',' + '}'
+	store = '{' + store1 + ',' + store2 + ',' + store3 + '}'
+	#store = '{' + store1 + ',' + store2 + '}'
 	fileJson = open("data/brain.json", "w")
 	fileJson.write(store)
 	fileJson.close()
@@ -53,16 +53,14 @@ jsonFile = open('data/brain.json').read()
 
 #print jsonFile
 
-brain = json.load(jsonFile)
+brain = json.loads(jsonFile)
 
 for i, item in enumerate(brain["inData"]):
 	inMessage.append(brain["inData"][i]["id"])
 	outMessage.append(brain["outData"][i]["id"])
 	wordMatch.append(0)
-###########THIS BIT
 #usersnamel = brain["names"]["usersnamel"]
 #namel = brain["names"]["namel"]
-###########THAT BIT
 
 now = datetime.datetime.now()
 if usersnamel == "":
