@@ -26,9 +26,11 @@ def saveData(inArray, outArray, user):
 	
 	store2 = store2 + ']'
 	
-	store3 = '"userName":"' + usernamel + '"'
-	
-	store = '{'+ store3 + ',' + store1 + ',' + store2 + '}'
+	store3 = '"userName":"' + usersnamel + '"'
+	store4 = '"pcLName":"' + lname + '"'
+	store5 = '"pcRName":"' + fname + '"'
+
+	store = '{'+ store5+','+store4 +','+ store3 + ',' + store1 + ',' + store2 + '}'
 
 	fileJson = open("data/brain.json", "w")
 	fileJson.write(store)
@@ -41,13 +43,7 @@ def saveData(inArray, outArray, user):
 firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #NO MORE NAMES!
 lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
 
-# picking computers name
-lname = lastnames[random.randint(0,len(lastnames)-1)]
-fname = firstnames[random.randint(0,len(firstnames)-1)]
 
-#combineing names
-namel = fname + " " + lname
-age = random.randint(14,60)
 
 usernamel = ""
 
@@ -87,7 +83,9 @@ for i, item in enumerate(brain["inData"]):
 	outMessage.append(brain["outData"][i]["id"])
 	wordMatch.append(0)
 	
-usenamel = brain["userName"]
+usersnamel = brain["userName"]
+lname = brain["pcLName"] 
+fname = brain["pcRName"]
 
 print len(brain["inData"])
 
@@ -96,8 +94,17 @@ now = time.strftime("%H:%M:%S")
 print "waking up..."
 
 now = time.strftime("%H:%M:%S")# uses a string make in time to create the time
+if lname == "":
+	# picking computers name
+	lname = lastnames[random.randint(0,len(lastnames)-1)]
+	fname = firstnames[random.randint(0,len(firstnames)-1)]
+#combineing names
+namel = fname + " " + lname
+if usersnamel == "":
+	usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
 
-usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
+
+age = random.randint(14,60)
 
 print now + " " + namel + ": " + message
 
