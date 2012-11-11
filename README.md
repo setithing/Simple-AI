@@ -9,5 +9,5 @@ More code will be added to improve selection of replys
 <h2>Files:</h2>
 Ai.py - Main program it loads a JSON file in data which contains replys<br />
 data - Contains the JSON DB<br />
-	brain.json - where all the data is stored
+>brain.json - where all the data is stored
 <br />
