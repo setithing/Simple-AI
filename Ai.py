@@ -32,7 +32,7 @@ def saveData(inArray, outArray):
 	fileJson.write(store)
 	fileJson.close()
 
-firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan"] #MORE NAMES!
+firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #MORE NAMES!
 lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
 
 lname = lastnames[random.randint(0,len(lastnames)-1)]
