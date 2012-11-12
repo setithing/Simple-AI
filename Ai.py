@@ -63,6 +63,7 @@ splitBuffer = []
 wordMatch = []
 highWord = 0
 noHigh = 1
+match = 0
 
 done = 0
 
@@ -194,12 +195,13 @@ while running == 1:
 			for g, item in enumerate(dataSplit):
 				
 				if dataSplit[g] == splitBuffer[h]:
-					wordMatch[i] = wordMatch[i] + 2
-
+					wordMatch[i] = wordMatch[i] + 4
+					match = 1
+			if match == 0:
+				wordMatch[i] = wordMatch[i] - 1
+			match = 0
 #may be causeing miss readings
-				else:
-					if wordMatch[i] > 0:
-						wordMatch[i] = wordMatch[i] - 1
+			
 				
 			
 		if wordMatch[i] > 0:
