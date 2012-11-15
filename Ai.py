@@ -75,11 +75,21 @@ running = 1
 
 olddata = "Hello"
 
+content = []
+#This code allows it to read JSON on multiple lines.
+##Revision history:
+###Ben Tatman, 15-11-12 *Started
+f = open("data/brain.json")
+p = f.readlines()
+string = ""
+for i in range(0,len(content)):
+  string += p[i]
+
 #loading and processing json file
 jsonFile = open('data/brain.json').read()
 
-brain = json.loads(jsonFile)
-
+brain = json.loads(string)
+string = ""
 
 #retriving data from json
 for i, item in enumerate(brain["inData"]):
