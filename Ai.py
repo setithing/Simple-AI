@@ -79,8 +79,11 @@ content = []
 #This code allows it to read JSON on multiple lines.
 ##Revision history:
 ###Ben Tatman, 15-11-12 *Started
-f = open("data/brain.json")
-p = f.readlines()
+f = open("data/brain.json","r")
+#p = f.readlines()
+p = []
+for line in f:
+    p.append( line )
 string = ""
 for i in range(0,len(content)):
   string += p[i]
@@ -90,6 +93,7 @@ jsonFile = open('data/brain.json').read()
 
 brain = json.loads(string)
 string = ""
+ins.close()
 
 #retriving data from json
 for i, item in enumerate(brain["inData"]):
