@@ -2,6 +2,7 @@ import json
 import random
 import time
 import datetime
+import sys
 import string
 
 def saveData(inArray, outArray, user):
@@ -90,10 +91,12 @@ for i in range(0,len(content)):
 
 #loading and processing json file
 jsonFile = open('data/brain.json').read()
-
-brain = json.loads(string)
+print string
+sys.exit("Stopped")
+#return
+brain = json.loads(jsonFile)
 string = ""
-ins.close()
+f.close()
 
 #retriving data from json
 for i, item in enumerate(brain["inData"]):
