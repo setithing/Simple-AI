@@ -5,37 +5,32 @@ import datetime
 import sys
 import string
 
+save = 1
+
 def saveData(inArray, outArray, user):
-	print "saving"
-		
-		
-	store1 = '"inData":['
-	for i, item in enumerate(inArray):
-		if(i == (len(inArray)-1)):
-			store1 = store1 + '{"id":"' + str(inArray[i]) + '"}'
-		else:
-			store1 = store1 + '{"id":"' + str(inArray[i]) + '"},'
-	
-	store1 = store1 + ']'
-	
-	store2 = '"outData":['
-	for i, item in enumerate(outArray):
-		if(i == (len(inArray)-1)):
-			store2 = store2 + '{"id":"' + str(outArray[i]) + '"}'
-		else:
-			store2 = store2 + '{"id":"' + str(outArray[i]) + '"},'
-	
-	store2 = store2 + ']'
-	
-	store3 = '"userName":"' + usersnamel + '"'
-	store4 = '"pcLName":"' + lname + '"'
-	store5 = '"pcRName":"' + fname + '"'
-
-	store = '{'+ store5+','+store4 +','+ store3 + ',' + store1 + ',' + store2 + '}'
-
-	fileJson = open("data/brain.json", "w")
-	fileJson.write(store)
-	fileJson.close()
+	if save == 1:
+		print "saving"
+		store1 = '"inData":['
+		for i, item in enumerate(inArray):
+			if(i == (len(inArray)-1)):
+				 store1 = store1 + '{"id":"' + str(inArray[i]) + '"}'
+			else:
+				store1 = store1 + '{"id":"' + str(inArray[i]) + '"},'
+		store1 = store1 + ']'
+		store2 = '"outData":['
+		for i, item in enumerate(outArray):
+			if(i == (len(inArray)-1)):
+				store2 = store2 + '{"id":"' + str(outArray[i]) + '"}'
+			else:
+				store2 = store2 + '{"id":"' + str(outArray[i]) + '"},'
+		store2 = store2 + ']'
+		store3 = '"userName":"' + usersnamel + '"'
+		store4 = '"pcLName":"' + lname + '"'
+		store5 = '"pcRName":"' + fname + '"'
+		store = '{'+ store5+','+store4 +','+ store3 + ',' + store1 + ',' + store2 + '}'
+		fileJson = open("data/brain.json", "w")
+		fileJson.write(store)
+		fileJson.close()
 
 
 #variable decalring
@@ -96,16 +91,24 @@ print len(brain["inData"])
 
 now = time.strftime("%H:%M:%S")
 
-print "waking up..."
+args = raw_input("waking up...")
+
+gen_name = 0
+
+for i in range(0,len(argssplit)):
+	if args == "-s":
+		save = 0
+	if args == "-u":
+		gen_name = 1
 
 now = time.strftime("%H:%M:%S")# uses a string make in time to create the time
-if lname == "":
+if lname == "" or gen_name == 1:
 	# picking computers name
 	lname = lastnames[random.randint(0,len(lastnames)-1)]
 	fname = firstnames[random.randint(0,len(firstnames)-1)]
 #combineing names
 namel = fname + " " + lname
-if usersnamel == "":
+if usersnamel == "" or gen_name == 1:
 	usersnamel = raw_input(now + " " + namel + ": What is your name?\n" + now + " You: ")
 
 
