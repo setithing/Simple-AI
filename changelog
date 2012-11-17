@@ -5,6 +5,9 @@ DATE: 16-11-12
 OVERVIEW: Updated name generation
 DESC: Made it so the user can force it to generate names
 TODO: Make it take arguments from CMD, instead of on waking up.
-LINES: 41-72, 125-144
 
+DATE: 12-11-12
+OVERVIEW: Attempted to add new names
+DESC: Larger name DB
+TODO: Make it only generate when needed
 

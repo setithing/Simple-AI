@@ -38,7 +38,38 @@ def saveData(inArray, outArray, user):
 #computer names
 firstnames = ["Mark","Ben","Tom","Tim","George","Lily","Megan","Linus","Abbie","Elizabeth","Ryan","James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Mary","Patricia","Linda","Barbara","Elizabeth","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy","Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah","Kimberly","Deborah","Jessica","Shirley"] #NO MORE NAMES!
 lastnames = ["Smith","Johnson","Williams","Jones","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas"]
-
+#examples of names generated
+#*Elizabeth Smith
+#*Susan Taylor
+#*Mark Williams
+#*Tom Davis
+#*Joseph Moore
+#*Ruth Taylor
+#*Ronald Smith
+#*Sandra Jones
+#*Michael Davis
+#*Megan Anderson
+#*George Wilson
+#*Jessica Miller
+#*Jessica Davis
+#*Joseph Smith
+#*Lisa Wilson
+#*Lily Anderson
+#*John Miller
+#*Timothy Wilson
+#*Megan Wilson
+#*Jessica Miller
+#*Patricia Taylor
+#*Nancy Brown
+#*Sarah Brown
+#*Barbara Johnson
+#*Kevin Smith
+#*Kimberly Smith
+#*James Smith
+#*Kimberly Williams
+#*Edward Wilson
+#*Kevin Jones
+#
 
 
 usernamel = ""
@@ -95,15 +126,14 @@ args = raw_input("waking up...")
 
 gen_name = 0
 
-for i in range(0,len(argssplit)):
-	if args == "-s":
-		save = 0
-	if args == "-u":
-		gen_name = 1
+if args == "-s":
+	save = 0
+if args == "-u":
+	gen_name = 1
 
 now = time.strftime("%H:%M:%S")# uses a string make in time to create the time
 if lname == "" or gen_name == 1:
-	# picking computers name
+# picking computers name
 	lname = lastnames[random.randint(0,len(lastnames)-1)]
 	fname = firstnames[random.randint(0,len(firstnames)-1)]
 #combineing names

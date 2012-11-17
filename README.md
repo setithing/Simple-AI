@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Simple-AI (Overlord)</h1>
 
 Simple-AI is designed to learn just like a person. If it dosn't know what to say it will ask.
@@ -13,3 +14,9 @@ When complete it will be called something other than Simple-AI
 >data - Contains the JSON DB<br />
 >>brain.json - where all the data is stored
 <br />
+=======
+ChangeLogViewer
+===============
+
+Allows people to view a change log file.
+>>>>>>> 0409a071d8075bf31354ea88d9f84b81f3d71477
